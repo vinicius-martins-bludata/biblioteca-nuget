@@ -35,7 +35,7 @@ jobs:
       run: dotnet build ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -p:Version=$BUILD_VERSION
 
     - name: Geração do pacote
-      run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} --no-restore --no-build --include-symbols
+      run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -Version $BUILD_VERSION --no-restore --no-build --include-symbols
 
     - name: Push no NuGet
       run: dotnet nuget push ${{ env.DIRETORIO_DESTINO_PACOTE }}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s ${{ secrets.NUGET_SERVER }}
