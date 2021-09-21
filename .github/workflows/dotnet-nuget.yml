@@ -64,7 +64,6 @@ jobs:
           echo "VersionSourceSha: ${{ steps.gitversion.outputs.versionSourceSha }}"
           echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.commitsSinceVersionSource }}"
           echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
-          echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
 
       - name: Setup .NET 5
         uses: actions/setup-dotnet@v1
