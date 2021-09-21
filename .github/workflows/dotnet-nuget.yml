@@ -71,7 +71,7 @@ jobs:
           dotnet-version: 5.0.x
 
       - name: Geração do pacote
-        run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ steps.gitversion.outputs.MajorMinorPatch }} --include-symbols
+        run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ steps.gitversion.outputs.MajorMinorPatch }}
 
       - name: Push no NuGet
         run: dotnet nuget push ${{ env.DIRETORIO_DESTINO_PACOTE }}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s ${{ secrets.NUGET_SERVER }}
