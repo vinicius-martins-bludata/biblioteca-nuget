@@ -60,7 +60,6 @@ jobs:
           echo "NuGetVersionV2: ${{ steps.gitversion.outputs.nuGetVersionV2 }}"
           echo "NuGetVersion: ${{ steps.gitversion.outputs.nuGetVersion }}"
           echo "NuGetPreReleaseTagV2: ${{ steps.gitversion.outputs.nuGetPreReleaseTagV2 }}"
-          echo "NuGetPreReleaseTag: ${{ steps.gitversion.outputs.nuGetPreReleaseTag }}"
 
       - name: Setup .NET 5
         uses: actions/setup-dotnet@v1
