@@ -3,8 +3,6 @@ name: .NET 5 + NuGet
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   pack_push:
@@ -43,7 +41,7 @@ jobs:
         run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity minimal
 
       - name: Geração do pacote
-        run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ steps.gitversion.outputs.MajorMinorPatch }}
+        run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ steps.gitversion.outputs.MajorMinorPatch }} --no-build --no-restore
 
       - name: Push no NuGet
         run: dotnet nuget push ${{ env.DIRETORIO_DESTINO_PACOTE }}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s ${{ secrets.NUGET_SERVER }}
