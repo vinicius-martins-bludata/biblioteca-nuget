@@ -1,4 +1,5 @@
-![example workflow](https://github.com/vinicius-martins-bludata/biblioteca-nuget/actions/workflows/dotnet-nuget.yml/badge.svg)
+![example workflow](https://github.com/vinicius-martins-bludata/biblioteca-nuget/actions/workflows/build.yml/badge.svg)
+![example workflow](https://github.com/vinicius-martins-bludata/biblioteca-nuget/actions/workflows/tests.yml/badge.svg)
 
 # Biblioteca NuGet
 
