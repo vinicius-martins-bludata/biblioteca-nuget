@@ -9,7 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      CAMINHO_PROJETO: ./Library/Library.csproj
+    
     steps:
     - uses: actions/checkout@v2
     
@@ -17,6 +19,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    
+        
     - name: Build
-      run: dotnet build
+      run: dotnet build ${{ env.CAMINHO_PROJETO }}
