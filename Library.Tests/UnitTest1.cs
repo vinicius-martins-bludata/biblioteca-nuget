@@ -19,7 +19,7 @@ namespace Library.Tests
         [Test]
         public void Append_TestTwo()
         {
-            Assert.That(Util.Append("Teste") == "Hello este");
+            Assert.That(Util.Append("Teste") == "Hello Teste");
         }
     }
 }
