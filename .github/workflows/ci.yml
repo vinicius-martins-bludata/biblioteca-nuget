@@ -11,7 +11,7 @@ env:
   CAMINHO_PROJETO_TESTES: ./Library.Tests/Library.Tests.csproj
 
 jobs:
-  build:
+  buildAndTest:
     runs-on: ubuntu-latest
     
     steps:
@@ -24,29 +24,9 @@ jobs:
         
     - name: Build
       run: dotnet build ${{ env.CAMINHO_PROJETO }}
-      
-    - uses: actions/upload-artifact@v2
-      with:
-        name: build artifacts
-        path: public/
-        
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Download artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: build artifacts
-        path: public
-        
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
     
     - name: Test
       run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity normal
+    
+    - name: Publish
+      run: dotnet publish ${{ env.CAMINHO_PROJETO }}
