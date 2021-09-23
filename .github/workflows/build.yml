@@ -22,3 +22,8 @@ jobs:
         
     - name: Build
       run: dotnet build ${{ env.CAMINHO_PROJETO }}
+      
+    - uses: actions/upload-artifact@main
+      with:
+        name: build artifacts
+        path: public/
