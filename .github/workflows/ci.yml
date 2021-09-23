@@ -11,7 +11,7 @@ env:
   CAMINHO_PROJETO_TESTES: ./Library.Tests/Library.Tests.csproj
 
 jobs:
-  buildAndTest:
+  build_test:
     runs-on: ubuntu-latest
     
     steps:

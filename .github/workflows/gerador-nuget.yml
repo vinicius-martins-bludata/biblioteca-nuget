@@ -1,22 +1,23 @@
-name: .NET 5 + NuGet
+name: gerador pacotes nuget
 
 on:
-  push:
+  workflow_run:
+    workflows: ["ci"]
     branches: [ master ]
+    types:
+      - completed
 
 jobs:
-  pack_push:
+  gerar_pacote:
     env:
       AMBIENTE_DESTINO: Release
       CAMINHO_PROJETO: ./Library/Library.csproj
-      CAMINHO_PROJETO_TESTES: ./Library.Tests/Library.Tests.csproj
       DIRETORIO_DESTINO_PACOTE: ${{ github.workspace }}/out
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repositório
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
@@ -37,11 +38,8 @@ jobs:
         with:
           dotnet-version: 5.0.x
 
-      - name: Executar testes automatizados
-        run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity minimal
-
       - name: Geração do pacote
-        run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ steps.gitversion.outputs.MajorMinorPatch }} --no-restore
-
+        run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ steps.gitversion.outputs.MajorMinorPatch }}
+        
       - name: Push no NuGet
         run: dotnet nuget push ${{ env.DIRETORIO_DESTINO_PACOTE }}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s ${{ secrets.NUGET_SERVER }}
