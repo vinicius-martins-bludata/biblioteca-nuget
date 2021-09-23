@@ -9,6 +9,7 @@ on:
 
 jobs:
   gerar_pacote:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     env:
       AMBIENTE_DESTINO: Release
       CAMINHO_PROJETO: ./Library/Library.csproj
