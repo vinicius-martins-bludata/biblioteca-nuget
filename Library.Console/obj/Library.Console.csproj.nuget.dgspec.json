@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library\\Library.csproj": {}
+    "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library.Console\\Library.Console.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library\\Library.csproj": {
+    "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library.Console\\Library.Console.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library\\Library.csproj",
-        "projectName": "Vanfarock.Bibliotecas",
-        "projectPath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library\\Library.csproj",
+        "projectUniqueName": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library.Console\\Library.Console.csproj",
+        "projectName": "Library.Console",
+        "projectPath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library.Console\\Library.Console.csproj",
         "packagesPath": "C:\\Users\\vinicius.martins.BLUDATA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library\\obj\\",
+        "outputPath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library.Console\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vinicius.martins.BLUDATA\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.11.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -49,6 +55,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.8, 5.0.8]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Library.Console": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

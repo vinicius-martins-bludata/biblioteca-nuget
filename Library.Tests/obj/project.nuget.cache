@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E8bCXW9T6R4tkpDXGYLpYTaP0UEr1LlOIRlMXdPmWTQpKud8yQjwo1o+WlXo/Dl7PQA8hSphmoHrXAQoz3whfg==",
+  "dgSpecHash": "2X0PNLan4Yl4qMgQGMrEa/GV77QRDQ4xvI/h8o3O7lVGpyWqwNuRhStJgFC1NJBk2RJy+8p5HbkeeFlIZqL7yg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\Library\\Library.Tests\\Library.Tests.csproj",
+  "projectFilePath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library.Tests\\Library.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vinicius.martins.BLUDATA\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\vinicius.martins.BLUDATA\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",

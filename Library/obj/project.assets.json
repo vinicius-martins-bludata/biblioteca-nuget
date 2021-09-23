@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\Library\\Library\\Library.csproj",
+      "projectUniqueName": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library\\Library.csproj",
       "projectName": "Vanfarock.Bibliotecas",
-      "projectPath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\Library\\Library\\Library.csproj",
+      "projectPath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library\\Library.csproj",
       "packagesPath": "C:\\Users\\vinicius.martins.BLUDATA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\Library\\Library\\obj\\",
+      "outputPath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\vinicius.martins.BLUDATA\\AppData\\Roaming\\NuGet\\NuGet.Config",

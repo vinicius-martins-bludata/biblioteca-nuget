@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "DJZ+wj69llxoQ2OLyJ+p7UPNKJjB4PXM4hRrC65BzTzDFrs0FQ1krFMKYRVis5/2Gsfx/Ja5iZzHrDUNpKjuNg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\vinicius.martins.BLUDATA\\Documents\\biblioteca-nuget\\Library.Console\\Library.Console.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vinicius.martins.BLUDATA\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512",
+    "C:\\Users\\vinicius.martins.BLUDATA\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.8\\microsoft.netcore.app.host.win-x64.5.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}
