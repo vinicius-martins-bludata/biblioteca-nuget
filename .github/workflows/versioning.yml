@@ -1,0 +1,22 @@
+name: Bump version
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      
+      - name: Bump version and push tag
+        id: bla
+        uses: hennejg/github-tag-action@v4.1.jh1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - run: |
+          echo ${{ steps.bla.new_tag }}
+          echo ${{ steps.bla.new_version }}
+          echo ${{ steps.bla.previous_tag }}
+          echo ${{ steps.bla.changelog }}
