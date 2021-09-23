@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     env:
       CAMINHO_PROJETO: ./Library/Library.csproj
@@ -24,4 +24,4 @@ jobs:
       run: dotnet build ${{ env.CAMINHO_PROJETO }}
     
     - name: Test
-      run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --no-build --verbosity normal
+      run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity normal
