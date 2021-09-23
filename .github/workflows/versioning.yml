@@ -11,7 +11,7 @@ jobs:
       
       - name: Bump version and push tag
         id: bla
-        uses: hennejg/github-tag-action@v4.1.jh1
+        uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       
