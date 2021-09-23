@@ -1,0 +1,45 @@
+name: gerador imagens Docker
+
+on:
+  workflow_run:
+    workflows: ["ci"]
+    branches: [ master ]
+    types:
+      - completed
+      
+jobs:
+  gerar_imagem:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.7
+        with:
+          versionSpec: '5.5.0'
+
+      - name: Determinar versão
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.7
+        with:
+          useConfigFile: true
+          configFilePath: GitVersion.yml
+
+      - name: Docker Login
+        uses: docker/login-action@v1.10.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build the Docker image
+        run: docker build -t ${{ github.repository }} .
+
+      - name: Tag Docker image
+        run: docker tag ${{ github.repository }} ${{ secrets.REPOSITORIO_DOCKER }}:${{ steps.gitversion.outputs.MajorMinorPatch }}
+
+      - name: Push Docker image
+        run: docker push ${{ secrets.REPOSITORIO_DOCKER }}:${{ steps.gitversion.outputs.MajorMinorPatch }}
