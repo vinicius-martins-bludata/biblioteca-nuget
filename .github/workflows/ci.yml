@@ -1,17 +1,19 @@
-name: tests
+name: ci
 
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+    
+env:
+  CAMINHO_PROJETO: ./Library/Library.csproj
+  CAMINHO_PROJETO_TESTES: ./Library.Tests/Library.Tests.csproj
 
 jobs:
-  test:
+  buildAndTest:
     runs-on: ubuntu-latest
-    env:
-      CAMINHO_PROJETO: ./Library/Library.csproj
-      CAMINHO_PROJETO_TESTES: ./Library.Tests/Library.Tests.csproj
+    
     steps:
     - uses: actions/checkout@v2
     
@@ -25,3 +27,6 @@ jobs:
     
     - name: Test
       run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity normal
+    
+    - name: Publish
+      run: dotnet publish ${{ env.CAMINHO_PROJETO }}
