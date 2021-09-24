@@ -1,18 +1,18 @@
-name: gerador imagens Docker
+name: Gerador imagem Docker
 
 on:
   workflow_dispatch:
     inputs:
-      version:
+      versao:
         description: 'Versão'
         required: true
       
 jobs:
-  test:
+  testar:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Wait for tests to succeed
+      - name: Rodar testes
         uses: lewagon/wait-on-check-action@v1.0.0
         with:
           ref: ${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
           allowed-conclusions: success
 
   gerar_imagem:
-    needs: [test]
+    needs: [testar]
     runs-on: ubuntu-latest
     
     steps:
@@ -37,7 +37,7 @@ jobs:
         run: docker build -t ${{ github.repository }} .
 
       - name: Tag Docker image
-        run: docker tag ${{ github.repository }} ${{ secrets.REPOSITORIO_DOCKER }}:${{ github.event.inputs.version }}
+        run: docker tag ${{ github.repository }} ${{ secrets.REPOSITORIO_DOCKER }}:${{ github.event.inputs.versao }}
 
       - name: Push Docker image
-        run: docker push ${{ secrets.REPOSITORIO_DOCKER }}:${{ github.event.inputs.version }}
+        run: docker push ${{ secrets.REPOSITORIO_DOCKER }}:${{ github.event.inputs.versao }}
