@@ -6,6 +6,11 @@ on:
     branches: [ master ]
     types:
       - completed
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Versão'
+        required: true
 
 jobs:
   gerar_pacote:
@@ -14,33 +19,28 @@ jobs:
       AMBIENTE_DESTINO: Release
       CAMINHO_PROJETO: ./Library/Library.csproj
       DIRETORIO_DESTINO_PACOTE: ${{ github.workspace }}/out
-
+      WORKFLOW_CI: gerador-nuget.yml
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
-      - name: Setup GitVersion
-        uses: gittools/actions/gitversion/setup@v0.9.7
+      - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with:
-          versionSpec: '5.5.0'
+          owner: "vinicius-martins-bludata"
+          repo: "biblioteca-nuget"
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          workflow_file_name: ${{ env.WORKFLOW_CI }}
+          
+      - run: |
+          echo "Finished"
+      #- name: Setup .NET 5
+        #uses: actions/setup-dotnet@v1
+        #with:
+          #dotnet-version: 5.0.x
 
-      - name: Determinar versão
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.7
-        with:
-          useConfigFile: true
-          configFilePath: GitVersion.yml
-
-      - name: Setup .NET 5
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
-
-      - name: Geração do pacote
-        run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ steps.gitversion.outputs.MajorMinorPatch }}
+      #- name: Geração do pacote
+        #run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ github.event.inputs.version }}
         
-      - name: Push no NuGet
-        run: dotnet nuget push ${{ env.DIRETORIO_DESTINO_PACOTE }}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s ${{ secrets.NUGET_SERVER }}
+      #- name: Push no NuGet
+        #run: dotnet nuget push ${{ env.DIRETORIO_DESTINO_PACOTE }}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s ${{ secrets.NUGET_SERVER }}
