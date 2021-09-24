@@ -1,8 +1,11 @@
 name: Bump version
 on:
-  push:
-    tags:
-      - '*.*.*'
+  workflow_run:
+    workflows: 
+      - gerador imagens docker
+      - gerador pacotes nuget
+    types:
+      - completed
       
 jobs:
   build:
@@ -10,15 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@master
       
-      - name: Bump version and push tag
-        id: bla
-        uses: mathieudutour/github-tag-action@v5.6
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_tag: true
-      
-      - run: |
-          echo ${{ steps.bla.outputs.new_tag }}
-          echo ${{ steps.bla.outputs.new_version }}
-          echo ${{ steps.bla.outputs.previous_tag }}
-          echo ${{ steps.bla.outputs.changelog }}
+      - run: echo ${{ github.event.workflow_run }}
