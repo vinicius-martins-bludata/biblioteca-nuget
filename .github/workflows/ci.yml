@@ -24,7 +24,6 @@ jobs:
     steps:
       - uses: EasyDesk/action-dotnet-test@v1
         with:
-          path: ${{ env.CAMINHO_PROJETO_TESTES }}
           build-configuration: Release
           skip-build: false
 
