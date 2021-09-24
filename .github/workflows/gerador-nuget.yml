@@ -13,34 +13,27 @@ on:
         required: true
 
 jobs:
-  consecutiveness:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: mktcode/consecutive-workflow-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-
   gerar_pacote:
     #if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    needs: [consecutiveness]
+    runs-on: ubuntu-latest
     env:
       AMBIENTE_DESTINO: Release
       CAMINHO_PROJETO: ./Library/Library.csproj
       DIRETORIO_DESTINO_PACOTE: ${{ github.workspace }}/out
-      WORKFLOW_CI: gerador-nuget.yml
-    runs-on: ubuntu-latest
 
     steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: ci
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allowed-conclusions: success
+    
       - uses: actions/checkout@v2
 
-      - name: Do something with a passing build
-        if: steps.wait-for-build.outputs.conclusion == 'success'
-        run: echo "Success"
+      - run: echo "Success"
 
-      - name: Do something with a failing build
-        if: steps.wait-for-build.outputs.conclusion == 'failure'
-        run: echo "Failure"
-        
       #- name: Setup .NET 5
         #uses: actions/setup-dotnet@v1
         #with:
