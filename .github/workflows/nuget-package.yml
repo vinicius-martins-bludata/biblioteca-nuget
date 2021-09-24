@@ -48,3 +48,9 @@ jobs:
 #           dotnet nuget push ${{ env.DIRETORIO_DESTINO_PACOTE }}/*.nupkg 
 #                          -k ${{ secrets.NUGET_API_KEY }} 
 #                          -s ${{ secrets.NUGET_SERVER }}
+
+      - name: Gerar tag
+        uses: mathieudutour/github-tag-action@v5.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ format('n{0}', github.event.inputs.version) }}
