@@ -13,8 +13,16 @@ on:
         required: true
 
 jobs:
+  consecutiveness:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: mktcode/consecutive-workflow-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
   gerar_pacote:
     #if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    needs: [consecutiveness]
     env:
       AMBIENTE_DESTINO: Release
       CAMINHO_PROJETO: ./Library/Library.csproj
@@ -25,13 +33,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: fountainhead/action-wait-for-check@v1.0.0
-        id: test_application
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: ci
-          intervalSeconds: 30
-          
       - name: Do something with a passing build
         if: steps.wait-for-build.outputs.conclusion == 'success'
         run: echo "Success"
