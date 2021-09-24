@@ -1,11 +1,11 @@
 name: gerador pacotes nuget
 
 on:
-  workflow_run:
-    workflows: ["ci"]
-    branches: [ master ]
-    types:
-      - completed
+  #workflow_run:
+    #workflows: ["ci"]
+    #branches: [ master ]
+    #types:
+      #- completed
   workflow_dispatch:
     inputs:
       version:
