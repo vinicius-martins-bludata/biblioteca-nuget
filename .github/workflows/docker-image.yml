@@ -1,33 +1,31 @@
 name: gerador imagens Docker
 
 on:
-  workflow_run:
-    workflows: ["ci"]
-    branches: [ master ]
-    types:
-      - completed
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Versão'
+        required: true
       
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: ${{ github.ref }}
+          check-name: build_test
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          allowed-conclusions: success
+
   gerar_imagem:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    needs: [test]
     runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Setup GitVersion
-        uses: gittools/actions/gitversion/setup@v0.9.7
-        with:
-          versionSpec: '5.5.0'
-
-      - name: Determinar versão
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.7
-        with:
-          useConfigFile: true
-          configFilePath: GitVersion.yml
 
       - name: Docker Login
         uses: docker/login-action@v1.10.0
@@ -39,7 +37,7 @@ jobs:
         run: docker build -t ${{ github.repository }} .
 
       - name: Tag Docker image
-        run: docker tag ${{ github.repository }} ${{ secrets.REPOSITORIO_DOCKER }}:${{ steps.gitversion.outputs.MajorMinorPatch }}
+        run: docker tag ${{ github.repository }} ${{ secrets.REPOSITORIO_DOCKER }}:${{ github.event.inputs.version }}
 
       - name: Push Docker image
-        run: docker push ${{ secrets.REPOSITORIO_DOCKER }}:${{ steps.gitversion.outputs.MajorMinorPatch }}
+        run: docker push ${{ secrets.REPOSITORIO_DOCKER }}:${{ github.event.inputs.version }}
