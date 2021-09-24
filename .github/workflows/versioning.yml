@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@master
       
-      - run: echo ${{ fromJSON(github.event.workflow_run) }}
+      - run: echo ${{ toJson(github.event.workflow_run) }}
