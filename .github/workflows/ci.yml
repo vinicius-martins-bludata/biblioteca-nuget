@@ -3,8 +3,15 @@ name: ci
 on:
   push:
     branches: [ master ]
+  
   pull_request:
     branches: [ master ]
+  
+  workflow_run:
+    workflows: ["ci"]
+    branches: [ master ]
+    types:
+      - requested
     
 env:
   CAMINHO_PROJETO: ./Library/Library.csproj
