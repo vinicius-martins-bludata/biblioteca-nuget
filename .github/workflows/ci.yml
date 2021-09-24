@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ master ]
   workflow_run:
-    workflows: ["gerador pacotes nuget"]
+    workflows: ["gerador pacotes nuget", "gerador imagens Docker"]
     branches: [ master ]
     types:
       - requested
