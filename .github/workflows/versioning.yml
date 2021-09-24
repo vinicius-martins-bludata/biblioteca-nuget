@@ -1,4 +1,4 @@
-name: Bump version
+name: Gerar tag
 on:
   workflow_run:
     workflows: 
@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@master
       
-      - run: echo ${{ github.event.workflow_run }}
+      - run: echo ${{ parseJSON(github.event.workflow_run) }}
