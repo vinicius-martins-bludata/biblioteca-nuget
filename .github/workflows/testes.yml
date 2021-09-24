@@ -14,7 +14,7 @@ on:
 #       - requested
   
 jobs:
-  testar:
+  buildar_testar:
     runs-on: ubuntu-latest
     
     steps:
