@@ -5,13 +5,13 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-#   workflow_run:
-#     workflows: 
-#       - gerador pacotes nuget
-#       - gerador imagens docker
-#     branches: [ master ]
-#     types:
-#       - requested
+  workflow_run:
+    workflows: 
+      - Gerador imagem Docker
+      - Gerador pacotes NuGet
+    branches: [ master ]
+    types:
+      - requested
   
 jobs:
   buildar_testar:
