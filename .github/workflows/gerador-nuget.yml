@@ -25,15 +25,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: convictional/trigger-workflow-and-wait@v1.3.0
+      - uses: fountainhead/action-wait-for-check@v1.0.0
+        id: test_application
         with:
-          owner: "vinicius-martins-bludata"
-          repo: "biblioteca-nuget"
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          workflow_file_name: ${{ env.WORKFLOW_CI }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: ci
           
-      - run: |
-          echo "Finished"
+      - name: Do something with a passing build
+        if: steps.wait-for-build.outputs.conclusion == 'success'
+        run: echo "Success"
+
+      - name: Do something with a failing build
+        if: steps.wait-for-build.outputs.conclusion == 'failure'
+        run: echo "Failure"
+        
       #- name: Setup .NET 5
         #uses: actions/setup-dotnet@v1
         #with:
