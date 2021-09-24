@@ -5,7 +5,12 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-    
+  workflow_run:
+    workflows: ["gerador pacotes nuget"]
+    branches: [ master ]
+    types:
+      - requested
+  
 env:
   CAMINHO_PROJETO: ./Library/Library.csproj
   CAMINHO_PROJETO_TESTES: ./Library.Tests/Library.Tests.csproj
