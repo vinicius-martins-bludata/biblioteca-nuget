@@ -1,11 +1,8 @@
 name: Bump version
 on:
-  create:
-    tags:
-      - 'v*.*.*'
   push:
     tags:
-      - 'v*.*.*'
+      - '*.*.*'
       
 jobs:
   build:
