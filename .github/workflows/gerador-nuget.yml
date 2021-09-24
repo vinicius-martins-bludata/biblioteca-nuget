@@ -30,6 +30,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           checkName: ci
+          intervalSeconds: 30
           
       - name: Do something with a passing build
         if: steps.wait-for-build.outputs.conclusion == 'success'
