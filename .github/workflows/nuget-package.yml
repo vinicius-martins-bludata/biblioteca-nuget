@@ -53,5 +53,5 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_tag: ${{ format('n{0}', github.event.inputs.versao) }}
-          tag_prefix: ''
+          custom_tag: ${{ github.event.inputs.versao }}
+          tag_prefix: 'n'
