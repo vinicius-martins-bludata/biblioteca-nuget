@@ -1,11 +1,6 @@
 name: gerador pacotes nuget
 
 on:
-  #workflow_run:
-    #workflows: ["ci"]
-    #branches: [ master ]
-    #types:
-      #- completed
   workflow_dispatch:
     inputs:
       version:
@@ -13,14 +8,9 @@ on:
         required: true
 
 jobs:
-  gerar_pacote:
-    #if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  test:
     runs-on: ubuntu-latest
-    env:
-      AMBIENTE_DESTINO: Release
-      CAMINHO_PROJETO: ./Library/Library.csproj
-      DIRETORIO_DESTINO_PACOTE: ${{ github.workspace }}/out
-
+    
     steps:
       - name: Wait for tests to succeed
         uses: lewagon/wait-on-check-action@v1.0.0
@@ -29,18 +19,25 @@ jobs:
           check-name: build_test
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-conclusions: success
-    
+
+  gerar_pacote:
+    needs: [test]
+    runs-on: ubuntu-latest
+    env:
+      AMBIENTE_DESTINO: Release
+      CAMINHO_PROJETO: ./Library/Library.csproj
+      DIRETORIO_DESTINO_PACOTE: ${{ github.workspace }}/out
+
+    steps:
       - uses: actions/checkout@v2
 
-      - run: echo "Success"
+      - name: Setup .NET 5
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
 
-      #- name: Setup .NET 5
-        #uses: actions/setup-dotnet@v1
-        #with:
-          #dotnet-version: 5.0.x
-
-      #- name: Geração do pacote
-        #run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ github.event.inputs.version }}
+      - name: Geração do pacote
+        run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c ${{ env.AMBIENTE_DESTINO }} -o ${{ env.DIRETORIO_DESTINO_PACOTE }} -p:PackageVersion=${{ github.event.inputs.version }}
         
-      #- name: Push no NuGet
-        #run: dotnet nuget push ${{ env.DIRETORIO_DESTINO_PACOTE }}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s ${{ secrets.NUGET_SERVER }}
+      - name: Push no NuGet
+        run: dotnet nuget push ${{ env.DIRETORIO_DESTINO_PACOTE }}/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s ${{ secrets.NUGET_SERVER }}
