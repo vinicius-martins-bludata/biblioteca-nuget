@@ -18,7 +18,7 @@ jobs:
           custom_tag: true
       
       - run: |
-          echo ${{ steps.bla.new_tag }}
-          echo ${{ steps.bla.new_version }}
-          echo ${{ steps.bla.previous_tag }}
-          echo ${{ steps.bla.changelog }}
+          echo ${{ steps.bla.outputs.new_tag }}
+          echo ${{ steps.bla.outputs.new_version }}
+          echo ${{ steps.bla.outputs.previous_tag }}
+          echo ${{ steps.bla.outputs.changelog }}
