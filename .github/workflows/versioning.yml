@@ -15,6 +15,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: true
       
       - run: |
           echo ${{ steps.bla.new_tag }}
