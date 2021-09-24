@@ -41,7 +41,7 @@ jobs:
 #           dotnet pack ${{ env.CAMINHO_PROJETO }} 
 #                    -c ${{ env.AMBIENTE_DESTINO }} 
 #                    -o ${{ env.DIRETORIO_DESTINO_PACOTE }} 
-#                    -p:PackageVersion=${{ github.event.inputs.version }}
+#                    -p:PackageVersion=${{ github.event.inputs.versao }}
         
 #       - name: Push no NuGet
 #         run: >
@@ -53,4 +53,4 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_tag: ${{ format('n{0}', github.event.inputs.version) }}
+          custom_tag: ${{ format('n{0}', github.event.inputs.versao) }}
