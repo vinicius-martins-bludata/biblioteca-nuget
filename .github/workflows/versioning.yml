@@ -2,8 +2,8 @@ name: gerar tag
 on:
   workflow_run:
     workflows: 
-      - gerador imagens docker
-      - gerador pacotes nuget
+      - Gerador imagem Docker
+      - Gerador pacotes NuGet
     types:
       - completed
       
@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@master
       
-      - run: echo ${{ toJson(github.event.workflow_run) }}
+      - run: echo ${{ toJson(github.event.client_payload) }}
