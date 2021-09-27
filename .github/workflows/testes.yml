@@ -3,8 +3,10 @@ name: Testes
 on:
   push:
     branches: [ master ]
+    paths-ignore: ['**.md']
   pull_request:
     branches: [ master ]
+    paths-ignore: ['**.md']
   workflow_run:
     workflows: 
       - Gerador imagem Docker
