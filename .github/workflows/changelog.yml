@@ -19,8 +19,6 @@ jobs:
         uses: WyriHaximus/github-action-jwage-changelog-generator@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          milestone: ${{ github.event.milestone.title }}
           
       - name: Gerar Changelog
         run: echo '${{ steps.auto_changelog.outputs.changelog }}' > CHANGELOG.md
