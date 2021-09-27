@@ -16,11 +16,12 @@ jobs:
 
       - name: Montar Changelog
         id: auto_changelog
-        uses: AlexxNB/chalogen@master
+        uses: WyriHaximus/github-action-jwage-changelog-generator@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          list: feat, fix, test, doc, refactor, other
-          date: '%D/%M/%Y'
-
+          milestone: ${{ github.event.milestone.title }}
+          
       - name: Gerar Changelog
         run: echo '${{ steps.auto_changelog.outputs.changelog }}' > CHANGELOG.md
           
