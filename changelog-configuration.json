@@ -1,0 +1,28 @@
+{
+    "categories": [
+      {
+        "title": "## 🚀 Features",
+        "labels": ["feature"]
+      },
+      {
+        "title": "## 🐛 Correções",
+        "labels": ["fix"]
+      },
+      {
+        "title": "## 🧪 Testes",
+        "labels": ["test"]
+      },
+      {
+        "title": "## 📘 Documentações",
+        "labels": ["docs"]
+      },
+      {
+        "title": "## 🔨 Refatorações",
+        "label": ["refactor"]
+      },
+      {
+        "title": "## 👻 Outros",
+        "label": ["other"]
+      }
+    ],
+}
