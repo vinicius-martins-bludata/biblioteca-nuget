@@ -2,10 +2,8 @@ name: Gerador de Changelog
 
 on:
   push:
-    branches: 
-      - master
-    paths-ignore:
-      - '**.md'
+    branches: [master]
+    paths-ignore: ['**.md']
 
 jobs:
   montar_changelog:
