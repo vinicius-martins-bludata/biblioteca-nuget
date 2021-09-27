@@ -16,18 +16,10 @@ jobs:
 
       - name: Montar Changelog
         id: auto_changelog
-        uses: BobAnkh/auto-generate-changelog@master
+        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         with:
-          ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PATH: /CHANGELOG.md
-          COMMIT_MESSAGE: Atualiza CHANGELOG.MD
-          TYPE: >
-            feat:🚀 Features,
-            fix:🐛 Correções,
-            test:🧪 Testes,
-            docs:📘 Documentações,
-            refactor:🔨 Refatorações,
-            other:👻 Outros
+          token: ${{ secrets.GITHUB_TOKEN }}
+          dateFormat: '%d/%m/%Y'
 #         uses: ardalanamini/auto-changelog@v1.1.0
 #         with:
 #           token: ${{ github.token }}
