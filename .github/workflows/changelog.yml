@@ -2,7 +2,9 @@ name: Gerador de Changelog
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+      - master
+      - 'push-action/**'
 
 jobs:
   montar_changelog:
