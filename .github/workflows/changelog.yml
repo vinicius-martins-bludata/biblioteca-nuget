@@ -16,29 +16,29 @@ jobs:
 
       - name: Montar Changelog
         id: auto_changelog
-        uses: saadmk11/changelog-ci@v0.8.0
+        uses: TriPSs/conventional-changelog-action@v3
         with:
-          changelog_filename: CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{ secrets.github_token }}
+          output-file: "false"
+          
           #         uses: ardalanamini/auto-changelog@v1.1.0
 #         with:
 #           token: ${{ github.token }}
           
-#       - name: Gerar Changelog
-#         run: echo '${{ steps.auto_changelog.outputs.changelog }}' > CHANGELOG.md
+      - name: Gerar Changelog
+        run: echo '${{ steps.auto_changelog.outputs.changelog }}' > CHANGELOG.md
           
-#       - name: Commit Changelog
-#         uses: EndBug/add-and-commit@v7
-#         with:
-#           add: CHANGELOG.md
-#           message: 'Atualiza CHANGELOG.md'
-#           pull_strategy: NO-PULL
-#           push: false
+      - name: Commit Changelog
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: CHANGELOG.md
+          message: 'Atualiza CHANGELOG.md'
+          pull_strategy: NO-PULL
+          push: false
 
-#       - name: Push Changelog
-#         uses: CasperWA/push-protected@v2
-#         with:
-#           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-#           branch: master
-#           unprotect_reviews: true
+      - name: Push Changelog
+        uses: CasperWA/push-protected@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          branch: master
+          unprotect_reviews: true
