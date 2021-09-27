@@ -21,10 +21,6 @@ jobs:
           list: feat, fix, test, doc, refactor, other
           date: '%D/%M/%Y'
 
-#         uses: ardalanamini/auto-changelog@v1.1.0
-#         with:
-#           token: ${{ github.token }}
-          
       - name: Gerar Changelog
         run: echo '${{ steps.auto_changelog.outputs.changelog }}' > CHANGELOG.md
           
