@@ -27,7 +27,7 @@ jobs:
             test:🧪 Testes,
             docs:📘 Documentações,
             refactor:🔨 Refatorações,
-            other:👻 Outros,
+            other:👻 Outros
 #         uses: ardalanamini/auto-changelog@v1.1.0
 #         with:
 #           token: ${{ github.token }}
