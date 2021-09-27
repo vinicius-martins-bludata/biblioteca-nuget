@@ -20,7 +20,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Gerar Changelog
-        run: echo ${{ steps.auto_changelog.outputs.changelog }} > CHANGELOG.md
+        run: echo '${{ steps.auto_changelog.outputs.changelog }}' > CHANGELOG.md
           
       - name: Commit Changelog
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version.
