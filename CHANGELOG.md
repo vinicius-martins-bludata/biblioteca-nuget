@@ -2,6 +2,10 @@
 
 * Remove `docs` do commit de Changelog ([33962388](https://github.com/vinicius-martins-bludata/biblioteca-nuget/commit/339623881512790e81401c202db8bc0293d59eb9))
 
+### Code Style Changes
+
+* Atualiza uso do array no yml ([9eeb4925](https://github.com/vinicius-martins-bludata/biblioteca-nuget/commit/9eeb492556f631a2575de65ded1040c411d86c16))
+
 ### Continuous Integration
 
 * Atualiza testes.yml ([d899fe5e](https://github.com/vinicius-martins-bludata/biblioteca-nuget/commit/d899fe5e7dd8490228f6735d8b01c1c25cb0a9b1))
