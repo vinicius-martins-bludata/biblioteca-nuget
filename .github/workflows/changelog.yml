@@ -16,12 +16,12 @@ jobs:
 
       - name: Montar Changelog
         id: auto_changelog
-        uses: TriPSs/conventional-changelog-action@v3
+        uses: AlexxNB/chalogen@master
         with:
-          github-token: ${{ secrets.github_token }}
-          output-file: "false"
-          
-          #         uses: ardalanamini/auto-changelog@v1.1.0
+          list: feat, fix, test, doc, refactor, other
+          date: '%D/%M/%Y'
+
+#         uses: ardalanamini/auto-changelog@v1.1.0
 #         with:
 #           token: ${{ github.token }}
           
