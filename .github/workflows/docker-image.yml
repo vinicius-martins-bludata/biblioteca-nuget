@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       versao:
+        type: choice
+        options:
+          - teste
+          - teste2
         description: 'Versão'
         required: true
       
